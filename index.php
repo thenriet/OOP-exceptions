@@ -19,3 +19,5 @@ var_dump($truck);
 $truck = new Truck('blue', 4, '100', 'electric');
 echo $truck->forward();
 var_dump($truck);
+
+echo $truck->isFull(10);

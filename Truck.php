@@ -8,6 +8,8 @@ class Truck extends Vehicle {
         'electric',
     ];
 
+    public const MAX_LOADING = 100;
+
     private int $capacity;
 
     private int $loading = 0;
@@ -48,5 +50,15 @@ class Truck extends Vehicle {
             $this->energy = $energy;
         }
         return $this;
+    }
+
+    public function isFull($loading) {
+        $sentence = "";
+        if ($loading <= self::MAX_LOADING){
+            $sentence .= "in filling..." . PHP_EOL;
+        }
+        $this->loading = self::MAX_LOADING;
+        $sentence .= "full !";
+        return $sentence;
     }
 }
