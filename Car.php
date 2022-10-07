@@ -1,90 +1,45 @@
 <?php
 
-class Car 
+require_once 'Vehicle.php';
+
+
+class Car extends Vehicle
 {
-    private int $nbWheels = 4;
-    private int $currentSpeed = 0;
-    private string $color;
-    private int $nbSeats;
+    public const ALLOWED_ENERGIES = [
+        'fuel',
+        'electric',
+    ];
+
     private string $energy;
+
     private int $energyLevel = 100;
 
     public function __construct(string $color, int $nbSeats, string $energy)
     {
-        $this->color = $color;
-        $this->nbSeats = $nbSeats;
-        $this->energy = $energy;
+        parent::__construct($color, $nbSeats);
+        $this->setEnergy($energy);
     }
 
-    public function forward(): string
-    {
-        $sentence = "";
-        while ($this->getCurrentSpeed() < 15) 
-        {
-            $this->setCurrentSpeed($this->getCurrentSpeed()+1);
-            $sentence .= "Accelerating...".PHP_EOL."Speed: " .$this->getCurrentSpeed() .PHP_EOL;
-        }
-        $sentence .= "I'm at full speed !";
-        return $sentence;
-    }
-
-    public function brake(): string
-    {
-        $sentence = "";
-        while ($this->getCurrentSpeed() > 0) 
-        {
-            $this->setCurrentSpeed($this->getCurrentSpeed()-1);
-            $sentence .= "Brake !".PHP_EOL."Speed: " .$this->getCurrentSpeed() .PHP_EOL;
-        }
-        $sentence .= "I'm stopped !";
-        return $sentence;
-    }
-
-    public function start(): string
-    {
-        $sentence = "";
-        if($this->currentSpeed === 0 && $this->energyLevel > 0)
-        {
-            $sentence .= "Starting the engine...";
-            return $sentence;
-        }
-    }
-
-    public function getNbWheels()
-    {
-        return $this->nbWheels;
-    }
-
-    public function getCurrentSpeed()
-    {
-        return $this->currentSpeed;
-    }
-
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    public function getNbSeats()
-    {
-        return $this->nbSeats;
-    }
-
-    public function getEnergy()
+    public function getEnergy(): string
     {
         return $this->energy;
     }
 
-    public function getEnergyLevel()
+    public function setEnergy(string $energy): Car
+    {
+        if (in_array($energy, self::ALLOWED_ENERGIES)) {
+            $this->energy = $energy;
+        }
+        return $this;
+    }
+
+    public function getEnergyLevel(): int
     {
         return $this->energyLevel;
     }
 
-    public function setCurrentSpeed($currentSpeed)
+    public function setEnergyLevel(int $energyLevel): void
     {
-        if($currentSpeed >= 0) 
-        {
-            $this->currentSpeed = $currentSpeed;
-        }
+        $this->energyLevel = $energyLevel;
     }
 }

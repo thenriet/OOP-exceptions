@@ -1,14 +1,21 @@
 <?php
 require_once 'Car.php';
 require_once 'Bicycle.php';
+require_once 'Truck.php';
 
-$myCar = new Car('red', 5, 'gas');
-echo $myCar->start() . PHP_EOL;
-echo $myCar->forward() . PHP_EOL;
-echo $myCar->brake() . PHP_EOL;
+$bicycle = new Bicycle('blue', 1);
+echo $bicycle->forward();
+var_dump($bicycle);
 
-$bike = new Bicycle('blue');
-echo $bike->forward();
-echo '<br> Vitesse du vélo : ' . $bike->getCurrentSpeed() . ' km/h' . '<br>';
-echo $bike->brake();
-echo '<br> Vitesse du vélo : ' . $bike->getCurrentSpeed() . ' km/h' . '<br>';
+$car = new Car('green', 4, 'electric');
+echo $car->forward();
+var_dump($car);
+
+$truck = new Truck('red', 4, '100', 'fuel');
+echo $truck->forward();
+var_dump($truck);
+
+
+$truck = new Truck('blue', 4, '100', 'electric');
+echo $truck->forward();
+var_dump($truck);
