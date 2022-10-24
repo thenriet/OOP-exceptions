@@ -21,3 +21,4 @@ echo $truck->forward();
 var_dump($truck);
 
 echo $truck->isFull(10);
+
